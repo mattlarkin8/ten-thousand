@@ -46,8 +46,10 @@ from ten_thousand.game_logic import GameLogic
         ((2, 2, 3, 3, 4, 6), 0),
         ((2, 2, 3, 3, 6, 6), 1500),
         ((1, 1, 1, 2, 2, 2), 1200),
+        ((2, 2, 3, 3, 3, 6), 1500)
     ],
 )
 def test_all(test_input, expected):
+    print(f"Test Input: {test_input}")
     actual = GameLogic.calculate_score(test_input)
     assert actual == expected
