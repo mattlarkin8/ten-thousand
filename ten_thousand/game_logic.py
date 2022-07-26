@@ -16,23 +16,24 @@ class GameLogic:
     @staticmethod
     def calculate_score(tup):
         score = 0
-        # list(tup).sort()
         roll = Counter(tup).most_common()
-
-        # if tup is None:
-        #     tup = [0]
 
         if len(tup) == 0:
             return score
 
         print(f"print roll: {roll}")
 
+        # straight
+        if len(roll) == 6:
+            return 1500
+
         #6 of a kind
         if roll[0][1] == 6:
             if roll[0][0] == 1:
-                return 4000
-
-            return int(roll[0][0]) * 400
+                score += 4000
+                return score
+            score += int(roll[0][0]) * 400
+            return score
 
         #5 of a kind
         elif roll[0][1] == 5:
@@ -73,7 +74,7 @@ class GameLogic:
                 return score
 
         # double 3 of a kind
-        elif len(roll) > 1:
+        elif len(roll) == 2:
             if roll[0][1] == 3 and roll[1][1] == 3:
                 if roll[0][0] == 1:
                     score += 1000
@@ -119,23 +120,21 @@ class GameLogic:
                 score += 1500
                 return score
 
-        # straight
-        elif len(roll) == 6:
-            return 1500
-
-        # full house
-        elif len(roll) >= 2:
-            if roll[0][3] and roll[1][2]:
-                score += 1500
-
-            elif len(roll) == 3:
-                if roll[2][0] == 5:
-                    score += 50
-
-                elif roll[2][0] == 1:
-                    score += 100
-
-            return score
+        #********Commented out after working with Roger
+        # Should a full house exist as a valid score?
+        # # full house
+        # elif len(roll) >= 2:
+        #     if roll[0][1] == 3 and roll[1][1] == 2:
+        #         score += 1500
+        #
+        #     elif len(roll) == 3:
+        #         if roll[2][0] == 5:
+        #             score += 50
+        #
+        #         elif roll[2][0] == 1:
+        #             score += 100
+        #
+        #     return score
 
         # pair 1's
         elif roll[0][1] == 2 and roll[0][0] == 1:
