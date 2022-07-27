@@ -1,6 +1,16 @@
 import random
 from collections import Counter
 
+class Banker:
+    def __init__(self):
+        self.score = 0
+
+    def add_to_score(self, points):
+        self.score += points
+
+    def get_score(self):
+        return self.score
+
 class GameLogic:
     def __init__(self):
         pass
@@ -10,7 +20,6 @@ class GameLogic:
         rolls = []
         while len(rolls) < num:
             rolls.append(random.randint(1, 6))
-
         return tuple(rolls)
 
     @staticmethod
@@ -156,4 +165,9 @@ class GameLogic:
         elif roll[0][0] == 5:
             score += 50
 
+        # default/catch all return
         return score
+
+    @staticmethod
+    def test_roller():
+        return 4, 2, 6, 4, 6, 5
