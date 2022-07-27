@@ -2,18 +2,27 @@ import random
 from collections import Counter
 
 class Banker:
+    score = 0
     def __init__(self):
-        self.score = 0
+        pass
 
-    def add_to_score(self, points):
-        self.score += points
+    @staticmethod
+    def add_to_score(points):
+        Banker.score += points
 
-    def get_score(self):
-        return self.score
+    @staticmethod
+    def get_score():
+        return Banker.score
 
 class GameLogic:
     def __init__(self):
         pass
+
+    @staticmethod
+    def dice_shelf(num_str = ""):
+        dice = list(num_str)
+        remaining = 6 - len(dice)
+        return tuple(dice), remaining
 
     @staticmethod
     def roll_dice(num):
@@ -29,8 +38,6 @@ class GameLogic:
 
         if len(tup) == 0:
             return score
-
-        print(f"print roll: {roll}")
 
         # straight
         if len(roll) == 6:
