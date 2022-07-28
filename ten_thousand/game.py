@@ -88,4 +88,3 @@ def format_roll(roll):
 
 if __name__ == '__main__':
     play()
-    # print(GameLogic.calculate_score((1,1,1,1,1)))
