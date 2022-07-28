@@ -17,3 +17,5 @@ No automated tests for Lab07 at the moment. Check output using the sim files in 
 ## **Credit**
 
 I worked with Alec Torres and Ryan McMillan when creating the `calculate_score` method.
+
+Big thanks to JB for recommending that we rewrite our code using many small functions instead of one big one. My code is much more manageable now.
