@@ -20,10 +20,9 @@ class GameLogic:
         pass
 
     @staticmethod
-    def dice_shelf(num_str = ""):
+    def dice_shelf(num_str):
         dice = list(num_str)
-        remaining = 6 - len(dice)
-        return tuple(dice), remaining
+        return tuple(dice)
 
     @staticmethod
     def roll_dice(num):
