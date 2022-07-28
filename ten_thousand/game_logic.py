@@ -92,13 +92,13 @@ class GameLogic:
         # double 3 of a kind
         if len(roll) == 2:
             if roll[0][1] == 3 and roll[1][1] == 3:
-                # if roll[0][0] == 1:
-                #     score += 1000
-                #     return score + roll[1][0] * 100
-                #
-                # if roll[1][0] == 1:
-                #     score += 1000
-                #     return score + roll[0][0] * 100
+                if roll[0][0] == 1:
+                    score += 1000
+                    return score + roll[1][0] * 100
+
+                if roll[1][0] == 1:
+                    score += 1000
+                    return score + roll[0][0] * 100
 
                 return roll[0][0] * 100 + roll[1][0] * 100
 
@@ -136,22 +136,6 @@ class GameLogic:
             if roll[0][1] and roll[1][1] and roll[2][1] == 2:
                 score += 1500
                 return score
-
-        #********Commented out after working with Roger
-        # Should a full house exist as a valid score?
-        # # full house
-        # elif len(roll) >= 2:
-        #     if roll[0][1] == 3 and roll[1][1] == 2:
-        #         score += 1500
-        #
-        #     elif len(roll) == 3:
-        #         if roll[2][0] == 5:
-        #             score += 50
-        #
-        #         elif roll[2][0] == 1:
-        #             score += 100
-        #
-        #     return score
 
         # handle single 1's and 5's
         one_counter = 0
