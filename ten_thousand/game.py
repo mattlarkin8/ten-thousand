@@ -53,22 +53,28 @@ def play_turn(num):
         # roll remaining dice
         roll = roll_dice(num_dice)
         # display the results of the roll
-        print(f"*** {format_roll(roll)} ***")
+        display_roll(roll)
 
         # check if roll is zilch
         if GameLogic.calculate_score(roll) == 0:
             zilch()
             return 0
 
-        # prompt user to keep dice
-        print("Enter dice to keep, or (q)uit:")
-        keep = input("> ")
-        # check if user quit
-        if keep == "q":
-            return -1
+        # prompt user to keep dice, verify that input is valid
+        while True:
+            print("Enter dice to keep, or (q)uit:")
+            keep = input("> ")
+            # check if user quit
+            if keep == "q":
+                return -1
 
-        # verify that user input is valid
+            # check if they're a dirty cheater
+            if cheater(roll, keep) is True:
+                print("Cheater!!! Or possibly made a typo...")
+                display_roll(roll)
 
+            if cheater(roll, keep) is False:
+                break
 
         # keep selected dice
         new = GameLogic.dice_shelf(keep)
@@ -99,12 +105,42 @@ def play_turn(num):
         if choice == "b":
             return turn_points
 
+def cheater(roll, keep):
+    cheating = True
+    roll_list = list(roll)
+    keep_list = list(keep)
+    check_vals = [int(num) for num in keep_list]
+    val_count = 0
+    for val in check_vals:
+        roll_count = 0
+        print(f"roll list: {roll_list}")
+        print(f"check vals: {check_vals}")
+        print(f"val count: {val_count}, roll count: {roll_count}")
+        for num in roll_list:
+            print(f"roll count: {roll_count}")
+            print(f"num: {num}, val: {val}")
+            if num == val:
+                print(f"roll list pop: {roll_list[roll_count]}")
+                print(f"check val pop: {check_vals[val_count]}")
+                roll_list.pop(roll_count)
+                check_vals.pop(val_count)
+                break
+            roll_count += 1
+        # val_count += 1
+
+    if len(check_vals) == 0:
+        cheating = False
+    return cheating
+
 def roll_dice(num_dice):
     print(f"Rolling {num_dice} dice...")
     return GameLogic.roll_dice(num_dice)
 
 def add_to_shelf(keep):
     return GameLogic.dice_shelf(keep)
+
+def display_roll(roll):
+    print(f"*** {format_roll(roll)} ***")
 
 def format_roll(roll):
     roll_values = []
